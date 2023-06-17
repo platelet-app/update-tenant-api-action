@@ -1,16 +1,32 @@
 import * as core from '@actions/core'
-import {wait} from './wait'
+import * as fs from 'fs'
+import {
+  getTenantByBranchQuery,
+  createTenantQuery,
+  updateTenantQuery
+} from './appsyncQuery'
 
 async function run(): Promise<void> {
   try {
-    const ms: string = core.getInput('milliseconds')
-    core.debug(`Waiting ${ms} milliseconds ...`) // debug is only output if you set the secret `ACTIONS_STEP_DEBUG` to true
-
-    core.debug(new Date().toTimeString())
-    await wait(parseInt(ms, 10))
-    core.debug(new Date().toTimeString())
-
-    core.setOutput('time', new Date().toTimeString())
+    const awsExportsFilepath: string = core.getInput('awsExportsFilepath')
+    // read the contents of the file
+    const awsExportsFile = fs.readFileSync(awsExportsFilepath, 'utf8')
+    const branchName: string = core.getInput('branch')
+    const tenantData = await getTenantByBranchQuery({branch: branchName})
+    if (tenantData) {
+      await updateTenantQuery({
+        id: tenantData.id,
+        config: awsExportsFile,
+        version: tenantData.version + 1
+      })
+    } else {
+      await createTenantQuery({
+        branch: branchName,
+        config: awsExportsFile,
+        name: branchName,
+        version: 1
+      })
+    }
   } catch (error) {
     if (error instanceof Error) core.setFailed(error.message)
   }
