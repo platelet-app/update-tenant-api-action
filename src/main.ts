@@ -5,7 +5,7 @@ import {
   updateTenantQuery
 } from './appsyncQuery'
 
-const awsExports = require('./aws-exports').default
+const awsExports = require('../src/aws-exports').default
 
 async function run(): Promise<void> {
   try {
