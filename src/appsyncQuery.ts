@@ -11,7 +11,7 @@ import {
 import {createTenant, updateTenant} from './graphql/mutations'
 import {getTenantByBranch} from './graphql/queries'
 
-const AWS_REGION = process.env.REGION
+const AWS_REGION = process.env.AWS_REGION
 const API_URL = process.env.API_URL
 const AWS_ACCESS_KEY_ID = process.env.AWS_ACCESS_KEY_ID
 const AWS_SECRET_ACCESS_KEY = process.env.AWS_SECRET_ACCESS_KEY
