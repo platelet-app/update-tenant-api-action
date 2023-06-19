@@ -11,19 +11,12 @@ import {
 import {createTenant, updateTenant} from './graphql/mutations'
 import {getTenantByBranch} from './graphql/queries'
 
-const APP_ID = process.env.APP_ID
 const AWS_REGION = process.env.REGION
 const API_URL = process.env.API_URL
 const AWS_ACCESS_KEY_ID = process.env.AWS_ACCESS_KEY_ID
 const AWS_SECRET_ACCESS_KEY = process.env.AWS_SECRET_ACCESS_KEY
 
-if (
-  !APP_ID ||
-  !AWS_REGION ||
-  !API_URL ||
-  !AWS_ACCESS_KEY_ID ||
-  !AWS_SECRET_ACCESS_KEY
-) {
+if (!AWS_REGION || !API_URL || !AWS_ACCESS_KEY_ID || !AWS_SECRET_ACCESS_KEY) {
   throw new Error('Missing environment variables')
 }
 
