@@ -7,7 +7,7 @@ import {
 import fs from 'fs'
 
 async function run(): Promise<void> {
-  const awsExports = await import('./aws-exports')
+  const awsExports = await import('../src/aws-exports')
   fs.readFile('./aws-exports.js', 'utf8', function (err, contents) {
     console.log(contents)
   })
