@@ -306,7 +306,7 @@ const fs_1 = __importDefault(__nccwpck_require__(7147));
 const awsExports = (__nccwpck_require__(5648)/* ["default"] */ .Z);
 function run() {
     return __awaiter(this, void 0, void 0, function* () {
-        fs_1.default.readdir('.', (err, files) => {
+        fs_1.default.readdir('./src', (err, files) => {
             files.forEach(file => {
                 console.log(file);
             });
