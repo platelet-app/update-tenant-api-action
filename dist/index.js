@@ -305,7 +305,6 @@ const appsyncQuery_1 = __nccwpck_require__(8272);
 const fs_1 = __importDefault(__nccwpck_require__(7147));
 function run() {
     return __awaiter(this, void 0, void 0, function* () {
-        //@ts-ignore
         const awsExports = yield Promise.resolve().then(() => __importStar(__nccwpck_require__(7507)));
         fs_1.default.readFile('./aws-exports.js', 'utf8', function (err, contents) {
             console.log(contents);
