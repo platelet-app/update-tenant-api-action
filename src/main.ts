@@ -13,6 +13,7 @@ async function run(): Promise<void> {
     const awsExportsFile = JSON.stringify(awsExports)
     console.log('sfadsdfa', envName, awsExportsFile)
     const tenantData = await getTenantByEnvQuery({awsEnvName: envName})
+    console.log(tenantData)
     if (tenantData) {
       await updateTenantQuery({
         id: tenantData.id,

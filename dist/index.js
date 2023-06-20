@@ -308,6 +308,7 @@ function run() {
             const awsExportsFile = JSON.stringify(awsExports);
             console.log('sfadsdfa', envName, awsExportsFile);
             const tenantData = yield (0, appsyncQuery_1.getTenantByEnvQuery)({ awsEnvName: envName });
+            console.log(tenantData);
             if (tenantData) {
                 yield (0, appsyncQuery_1.updateTenantQuery)({
                     id: tenantData.id,
