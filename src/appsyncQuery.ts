@@ -5,11 +5,11 @@ import {HttpRequest} from '@aws-sdk/protocol-http'
 import fetch, {Request} from 'node-fetch'
 import {
   UpdateTenantInput,
-  GetTenantByBranchQueryVariables,
+  GetTenantByEnvNameQueryVariables,
   CreateTenantInput
 } from './API'
 import {createTenant, updateTenant} from './graphql/mutations'
-import {getTenantByBranch} from './graphql/queries'
+import {getTenantByEnvName} from './graphql/queries'
 
 const AWS_REGION = process.env.AWS_REGION
 const API_URL = process.env.API_URL
@@ -76,14 +76,14 @@ export const createTenantQuery = async (variables: CreateTenantInput) => {
   return body?.data?.createTenant
 }
 
-export const getTenantByBranchQuery = async (
-  variables: GetTenantByBranchQueryVariables
+export const getTenantByEnvQuery = async (
+  variables: GetTenantByEnvNameQueryVariables
 ) => {
   const response = await request({
     variables,
-    query: getTenantByBranch
+    query: getTenantByEnvName
   })
   const body = await response.json()
   errorCheck(body)
-  return body.data.getTenantByBranch[0] || null
+  return body.data.getTenantByEnvName[0] || null
 }

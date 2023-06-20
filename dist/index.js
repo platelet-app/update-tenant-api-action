@@ -39,7 +39,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.getTenantByBranchQuery = exports.createTenantQuery = exports.updateTenantQuery = void 0;
+exports.getTenantByEnvQuery = exports.createTenantQuery = exports.updateTenantQuery = void 0;
 // amplify/backend/function/appsyncOperations/opt/appSyncRequest.js
 const sha256_js_1 = __nccwpck_require__(81);
 const signature_v4_1 = __nccwpck_require__(7776);
@@ -108,16 +108,16 @@ const createTenantQuery = (variables) => __awaiter(void 0, void 0, void 0, funct
     return (_b = body === null || body === void 0 ? void 0 : body.data) === null || _b === void 0 ? void 0 : _b.createTenant;
 });
 exports.createTenantQuery = createTenantQuery;
-const getTenantByBranchQuery = (variables) => __awaiter(void 0, void 0, void 0, function* () {
+const getTenantByEnvQuery = (variables) => __awaiter(void 0, void 0, void 0, function* () {
     const response = yield request({
         variables,
-        query: queries_1.getTenantByBranch
+        query: queries_1.getTenantByEnvName
     });
     const body = yield response.json();
     errorCheck(body);
-    return body.data.getTenantByBranch[0] || null;
+    return body.data.getTenantByEnvName[0] || null;
 });
-exports.getTenantByBranchQuery = getTenantByBranchQuery;
+exports.getTenantByEnvQuery = getTenantByEnvQuery;
 
 
 /***/ }),
@@ -139,7 +139,7 @@ exports.createTenant = `
   ) {
     createTenant(input: $input, condition: $condition) {
       id
-      branch
+      awsEnvName
       name
       config
       version
@@ -155,7 +155,7 @@ exports.updateTenant = `
   ) {
     updateTenant(input: $input, condition: $condition) {
       id
-      branch
+      awsEnvName
       name
       config
       version
@@ -171,7 +171,7 @@ exports.deleteTenant = `
   ) {
     deleteTenant(input: $input, condition: $condition) {
       id
-      branch
+      awsEnvName
       name
       config
       version
@@ -193,12 +193,12 @@ exports.deleteTenant = `
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.getTenantByBranch = exports.listTenants = exports.getTenant = void 0;
+exports.getTenantByEnvName = exports.listTenants = exports.getTenant = void 0;
 exports.getTenant = `
   query GetTenant($id: ID!) {
     getTenant(id: $id) {
       id
-      branch
+      awsEnvName
       name
       config
       version
@@ -216,7 +216,7 @@ exports.listTenants = `
     listTenants(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
-        branch
+        awsEnvName
         name
         config
         version
@@ -227,16 +227,16 @@ exports.listTenants = `
     }
   }
 `;
-exports.getTenantByBranch = `
-  query GetTenantByBranch(
-    $branch: String!
+exports.getTenantByEnvName = `
+  query GetTenantByEnvName(
+    $awsEnvName: String!
     $sortDirection: ModelSortDirection
     $filter: ModelTenantFilterInput
     $limit: Int
     $nextToken: String
   ) {
-    getTenantByBranch(
-      branch: $branch
+    getTenantByEnvName(
+      awsEnvName: $awsEnvName
       sortDirection: $sortDirection
       filter: $filter
       limit: $limit
@@ -244,7 +244,7 @@ exports.getTenantByBranch = `
     ) {
       items {
         id
-        branch
+        awsEnvName
         name
         config
         version
@@ -303,8 +303,8 @@ const awsExports = (__nccwpck_require__(5648)/* ["default"] */ .Z);
 function run() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
-            const branchName = core.getInput('branch');
-            const tenantData = yield (0, appsyncQuery_1.getTenantByBranchQuery)({ branch: branchName });
+            const envName = core.getInput('envName');
+            const tenantData = yield (0, appsyncQuery_1.getTenantByEnvQuery)({ awsEnvName: envName });
             const awsExportsFile = JSON.stringify(awsExports);
             if (tenantData) {
                 yield (0, appsyncQuery_1.updateTenantQuery)({
@@ -314,10 +314,11 @@ function run() {
                 });
             }
             else {
+                console.log('sfadsdfa', envName, awsExportsFile);
                 yield (0, appsyncQuery_1.createTenantQuery)({
-                    branch: branchName,
+                    awsEnvName: envName,
                     config: awsExportsFile,
-                    name: branchName,
+                    name: envName,
                     version: 1
                 });
             }

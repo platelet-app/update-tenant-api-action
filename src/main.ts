@@ -1,16 +1,16 @@
 import * as core from '@actions/core'
 import {
-  getTenantByBranchQuery,
   createTenantQuery,
-  updateTenantQuery
+  updateTenantQuery,
+  getTenantByEnvQuery
 } from './appsyncQuery'
 
 const awsExports = require('../src/aws-exports').default
 
 async function run(): Promise<void> {
   try {
-    const branchName: string = core.getInput('branch')
-    const tenantData = await getTenantByBranchQuery({branch: branchName})
+    const envName: string = core.getInput('envName')
+    const tenantData = await getTenantByEnvQuery({awsEnvName: envName})
     const awsExportsFile = JSON.stringify(awsExports)
     if (tenantData) {
       await updateTenantQuery({
@@ -19,10 +19,11 @@ async function run(): Promise<void> {
         version: tenantData.version + 1
       })
     } else {
+      console.log('sfadsdfa', envName, awsExportsFile)
       await createTenantQuery({
-        branch: branchName,
+        awsEnvName: envName,
         config: awsExportsFile,
-        name: branchName,
+        name: envName,
         version: 1
       })
     }
