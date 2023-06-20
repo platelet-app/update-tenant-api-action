@@ -306,7 +306,7 @@ const fs_1 = __importDefault(__nccwpck_require__(7147));
 function run() {
     return __awaiter(this, void 0, void 0, function* () {
         //@ts-ignore
-        const awsExports = yield Promise.resolve().then(() => __importStar(__nccwpck_require__(7507)));
+        const awsExports = yield Promise.resolve().then(() => __importStar(__nccwpck_require__(7275)));
         fs_1.default.readdir('./src', (err, files) => {
             files.forEach(file => {
                 console.log(file);
@@ -12176,10 +12176,10 @@ module.exports.implForWrapper = function (wrapper) {
 
 /***/ }),
 
-/***/ 7507:
+/***/ 7275:
 /***/ ((module) => {
 
-module.exports = eval("require")("./aws-exports");
+module.exports = eval("require")("./src/aws-exports");
 
 
 /***/ }),
