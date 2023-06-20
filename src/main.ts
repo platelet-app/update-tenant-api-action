@@ -5,24 +5,14 @@ import {
   getTenantByEnvQuery
 } from './appsyncQuery'
 const fs = require('fs').promises
-import _ from 'lodash'
 
 async function run(): Promise<void> {
-  const awsContent = await fs.readFile('./aws-exports.js', 'utf8')
-  const stripped = await awsContent
-    .replace('export default awsmobile;', '')
-    .replace('const awsmobile = ', '')
-    .replace(';', '')
-    .trim()
-  console.log(stripped)
-  const awsExports = JSON.parse(stripped)
-  if (!awsExports || _.isEmpty(awsExports)) {
-    core.setFailed('aws-exports.js is empty')
-    return
-  }
+  const awsExports = require('./aws-exports')
+  console.log(await fs.readFile('./aws-exports.js', 'utf8'))
   try {
     const envName: string = process.env.AMPLIFY_ENV_NAME || ''
     const awsExportsFile = JSON.stringify(awsExports)
+    console.log('sfadsdfa', envName, awsExportsFile)
     const tenantData = await getTenantByEnvQuery({awsEnvName: envName})
     if (tenantData) {
       await updateTenantQuery({
