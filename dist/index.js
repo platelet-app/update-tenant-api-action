@@ -296,20 +296,15 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 const core = __importStar(__nccwpck_require__(2186));
 const appsyncQuery_1 = __nccwpck_require__(8272);
-const fs_1 = __importDefault(__nccwpck_require__(7147));
+const fs = (__nccwpck_require__(7147).promises);
 function run() {
     return __awaiter(this, void 0, void 0, function* () {
+        yield fs.rename('./aws-exports.js', '../src/aws-exports.js');
         const awsExports = yield Promise.resolve().then(() => __importStar(__nccwpck_require__(5648)));
         console.log(__dirname);
-        fs_1.default.readFile('./aws-exports.js', 'utf8', function (err, contents) {
-            console.log(contents);
-        });
         try {
             const envName = process.env.AMPLIFY_ENV_NAME || '';
             const awsExportsFile = JSON.stringify(awsExports);
