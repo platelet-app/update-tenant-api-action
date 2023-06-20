@@ -302,9 +302,8 @@ const appsyncQuery_1 = __nccwpck_require__(8272);
 const fs = (__nccwpck_require__(7147).promises);
 function run() {
     return __awaiter(this, void 0, void 0, function* () {
-        const awsExports = __nccwpck_require__(9072);
-        console.log(__dirname);
-        console.log(yield fs.readFile('./aws-exports.js', 'utf8'));
+        const awsContent = yield fs.readFile('./aws-exports.js', 'utf8');
+        const awsExports = JSON.parse(yield awsContent.replace('export default ', '').replace(';', ''));
         try {
             const envName = process.env.AMPLIFY_ENV_NAME || '';
             const awsExportsFile = JSON.stringify(awsExports);
@@ -12162,14 +12161,6 @@ module.exports.implForWrapper = function (wrapper) {
   return wrapper[module.exports.implSymbol];
 };
 
-
-
-/***/ }),
-
-/***/ 9072:
-/***/ ((module) => {
-
-module.exports = eval("require")("./aws-exports.js");
 
 
 /***/ }),
