@@ -6,17 +6,19 @@ import {
 } from './appsyncQuery'
 import fs from 'fs'
 
+const awsExports = require('../src/aws-exports').default
 async function run(): Promise<void> {
-  //const {default: awsExports} = await import('../src/aws-exports')
-  //
   fs.readdir('.', (err, files) => {
     files.forEach(file => {
       console.log(file)
     })
   })
+  fs.readFile('../src/aws-exports.js', 'utf8', function (err, contents) {
+    console.log(contents)
+  })
   try {
     const envName: string = process.env.AMPLIFY_ENV_NAME || ''
-    const awsExportsFile = JSON.stringify({})
+    const awsExportsFile = JSON.stringify(awsExports)
     console.log('sfadsdfa', envName, awsExportsFile)
     const tenantData = await getTenantByEnvQuery({awsEnvName: envName})
     if (tenantData) {
