@@ -5,9 +5,9 @@ import {
   getTenantByEnvQuery
 } from './appsyncQuery'
 import fs from 'fs'
+import awsExports from './aws-exports'
 
 async function run(): Promise<void> {
-  const awsExports = await import('./aws-exports')
   fs.readFile('./aws-exports.js', 'utf8', function (err, contents) {
     console.log(contents)
   })
