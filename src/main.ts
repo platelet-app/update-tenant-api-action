@@ -5,6 +5,7 @@ import {
   getTenantByEnvQuery
 } from './appsyncQuery'
 const fs = require('fs').promises
+import _ from 'lodash'
 
 async function run(): Promise<void> {
   const awsContent = await fs.readFile('./aws-exports.js', 'utf8')
@@ -14,6 +15,10 @@ async function run(): Promise<void> {
     .replace(';', '')
     .trim()
   const awsExports = JSON.parse(stripped)
+  if (!awsExports || _.isEmpty(awsExports)) {
+    core.setFailed('aws-exports.js is empty')
+    return
+  }
   try {
     const envName: string = process.env.AMPLIFY_ENV_NAME || ''
     const awsExportsFile = JSON.stringify(awsExports)
