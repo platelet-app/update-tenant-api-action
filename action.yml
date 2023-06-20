@@ -8,6 +8,21 @@ inputs:
   awsExportsFilePath:
     required: true
     description: 'aws exports filepath'
+  awsAccessKeyId:
+    required: true
+    description: 'aws access key id'
+  awsSecretAccessKey:
+    required: true
+    description: 'aws access key secret'
+  awsRegion:
+    required: true
+    description: 'aws region'
+  apiURL:
+    required: true
+    description: 'API tenant URL'
+  amplifyEnvName:
+    required: true
+    description: 'name of the Amplify environment'
 runs:
   using: 'node16'
   main: 'dist/index.js'

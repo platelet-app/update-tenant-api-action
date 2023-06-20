@@ -41,28 +41,26 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.getTenantByEnvQuery = exports.createTenantQuery = exports.updateTenantQuery = void 0;
 // amplify/backend/function/appsyncOperations/opt/appSyncRequest.js
+const core = __importStar(__nccwpck_require__(2186));
 const sha256_js_1 = __nccwpck_require__(81);
 const signature_v4_1 = __nccwpck_require__(7776);
 const protocol_http_1 = __nccwpck_require__(223);
 const node_fetch_1 = __importStar(__nccwpck_require__(467));
 const mutations_1 = __nccwpck_require__(6818);
 const queries_1 = __nccwpck_require__(6146);
-const AWS_REGION = process.env.AWS_REGION;
-const API_URL = process.env.API_URL;
-const AWS_ACCESS_KEY_ID = process.env.AWS_ACCESS_KEY_ID;
-const AWS_SECRET_ACCESS_KEY = process.env.AWS_SECRET_ACCESS_KEY;
-if (!AWS_REGION || !API_URL || !AWS_ACCESS_KEY_ID || !AWS_SECRET_ACCESS_KEY) {
-    throw new Error('Missing environment variables');
-}
 const request = (queryDetails) => __awaiter(void 0, void 0, void 0, function* () {
-    const endpoint = new URL(API_URL);
+    const apiURL = core.getInput('apiURL');
+    const region = core.getInput('awsRegion');
+    const accessKeyId = core.getInput('awsAccessKeyId');
+    const secretAccessKey = core.getInput('awsSecretAccessKey');
+    const endpoint = new URL(apiURL);
     const credentials = {
-        accessKeyId: AWS_ACCESS_KEY_ID,
-        secretAccessKey: AWS_SECRET_ACCESS_KEY
+        accessKeyId,
+        secretAccessKey
     };
     const signer = new signature_v4_1.SignatureV4({
         credentials,
-        region: AWS_REGION,
+        region,
         service: 'appsync',
         sha256: sha256_js_1.Sha256
     });

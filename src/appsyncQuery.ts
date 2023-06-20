@@ -1,4 +1,5 @@
 // amplify/backend/function/appsyncOperations/opt/appSyncRequest.js
+import * as core from '@actions/core'
 import {Sha256} from '@aws-crypto/sha256-js'
 import {SignatureV4} from '@aws-sdk/signature-v4'
 import {HttpRequest} from '@aws-sdk/protocol-http'
@@ -11,24 +12,20 @@ import {
 import {createTenant, updateTenant} from './graphql/mutations'
 import {getTenantByEnvName} from './graphql/queries'
 
-const AWS_REGION = process.env.AWS_REGION
-const API_URL = process.env.API_URL
-const AWS_ACCESS_KEY_ID = process.env.AWS_ACCESS_KEY_ID
-const AWS_SECRET_ACCESS_KEY = process.env.AWS_SECRET_ACCESS_KEY
-
-if (!AWS_REGION || !API_URL || !AWS_ACCESS_KEY_ID || !AWS_SECRET_ACCESS_KEY) {
-  throw new Error('Missing environment variables')
-}
-
 const request = async (queryDetails: {variables: any; query: string}) => {
-  const endpoint = new URL(API_URL)
+  const apiURL = core.getInput('apiURL')
+  const region = core.getInput('awsRegion')
+  const accessKeyId = core.getInput('awsAccessKeyId')
+  const secretAccessKey = core.getInput('awsSecretAccessKey')
+
+  const endpoint = new URL(apiURL)
   const credentials = {
-    accessKeyId: AWS_ACCESS_KEY_ID,
-    secretAccessKey: AWS_SECRET_ACCESS_KEY
+    accessKeyId,
+    secretAccessKey
   }
   const signer = new SignatureV4({
     credentials,
-    region: AWS_REGION,
+    region,
     service: 'appsync',
     sha256: Sha256
   })
