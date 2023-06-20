@@ -4,14 +4,12 @@ import {
   updateTenantQuery,
   getTenantByEnvQuery
 } from './appsyncQuery'
-const fs = require('fs').promises
 
 async function run(): Promise<void> {
-  //const awsExports = await fs.readFile('./aws.json', 'utf8')
   try {
     const envName: string = process.env.AMPLIFY_ENV_NAME || ''
     const awsExportsFilepath = core.getInput('awsExportsFilepath')
-    const {default: awsExports} = await import(awsExportsFilepath)
+    const awsExports = require(awsExportsFilepath).default
     const awsExportsFile = JSON.stringify(awsExports)
     console.log('sfadsdfa', envName, awsExportsFile)
     const tenantData = await getTenantByEnvQuery({awsEnvName: envName})
