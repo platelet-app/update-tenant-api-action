@@ -4,14 +4,14 @@
 
 export type CreateTenantInput = {
   id?: string | null,
-  branch: string,
+  awsEnvName: string,
   name: string,
   config: string,
   version: number,
 };
 
 export type ModelTenantConditionInput = {
-  branch?: ModelStringInput | null,
+  awsEnvName?: ModelStringInput | null,
   name?: ModelStringInput | null,
   config?: ModelStringInput | null,
   version?: ModelIntInput | null,
@@ -75,7 +75,7 @@ export type ModelIntInput = {
 export type Tenant = {
   __typename: "Tenant",
   id: string,
-  branch: string,
+  awsEnvName: string,
   name: string,
   config: string,
   version: number,
@@ -85,7 +85,7 @@ export type Tenant = {
 
 export type UpdateTenantInput = {
   id: string,
-  branch?: string | null,
+  awsEnvName?: string | null,
   name?: string | null,
   config?: string | null,
   version?: number | null,
@@ -97,7 +97,7 @@ export type DeleteTenantInput = {
 
 export type ModelTenantFilterInput = {
   id?: ModelIDInput | null,
-  branch?: ModelStringInput | null,
+  awsEnvName?: ModelStringInput | null,
   name?: ModelStringInput | null,
   config?: ModelStringInput | null,
   version?: ModelIntInput | null,
@@ -136,7 +136,7 @@ export enum ModelSortDirection {
 
 export type ModelSubscriptionTenantFilterInput = {
   id?: ModelSubscriptionIDInput | null,
-  branch?: ModelSubscriptionStringInput | null,
+  awsEnvName?: ModelSubscriptionStringInput | null,
   name?: ModelSubscriptionStringInput | null,
   config?: ModelSubscriptionStringInput | null,
   version?: ModelSubscriptionIntInput | null,
@@ -195,7 +195,7 @@ export type CreateTenantMutation = {
   createTenant?:  {
     __typename: "Tenant",
     id: string,
-    branch: string,
+    awsEnvName: string,
     name: string,
     config: string,
     version: number,
@@ -213,7 +213,7 @@ export type UpdateTenantMutation = {
   updateTenant?:  {
     __typename: "Tenant",
     id: string,
-    branch: string,
+    awsEnvName: string,
     name: string,
     config: string,
     version: number,
@@ -231,7 +231,7 @@ export type DeleteTenantMutation = {
   deleteTenant?:  {
     __typename: "Tenant",
     id: string,
-    branch: string,
+    awsEnvName: string,
     name: string,
     config: string,
     version: number,
@@ -248,7 +248,7 @@ export type GetTenantQuery = {
   getTenant?:  {
     __typename: "Tenant",
     id: string,
-    branch: string,
+    awsEnvName: string,
     name: string,
     config: string,
     version: number,
@@ -269,7 +269,7 @@ export type ListTenantsQuery = {
     items:  Array< {
       __typename: "Tenant",
       id: string,
-      branch: string,
+      awsEnvName: string,
       name: string,
       config: string,
       version: number,
@@ -280,21 +280,21 @@ export type ListTenantsQuery = {
   } | null,
 };
 
-export type GetTenantByBranchQueryVariables = {
-  branch: string,
+export type GetTenantByEnvNameQueryVariables = {
+  awsEnvName: string,
   sortDirection?: ModelSortDirection | null,
   filter?: ModelTenantFilterInput | null,
   limit?: number | null,
   nextToken?: string | null,
 };
 
-export type GetTenantByBranchQuery = {
-  getTenantByBranch?:  {
+export type GetTenantByEnvNameQuery = {
+  getTenantByEnvName?:  {
     __typename: "ModelTenantConnection",
     items:  Array< {
       __typename: "Tenant",
       id: string,
-      branch: string,
+      awsEnvName: string,
       name: string,
       config: string,
       version: number,
@@ -313,7 +313,7 @@ export type OnCreateTenantSubscription = {
   onCreateTenant?:  {
     __typename: "Tenant",
     id: string,
-    branch: string,
+    awsEnvName: string,
     name: string,
     config: string,
     version: number,
@@ -330,7 +330,7 @@ export type OnUpdateTenantSubscription = {
   onUpdateTenant?:  {
     __typename: "Tenant",
     id: string,
-    branch: string,
+    awsEnvName: string,
     name: string,
     config: string,
     version: number,
@@ -347,7 +347,7 @@ export type OnDeleteTenantSubscription = {
   onDeleteTenant?:  {
     __typename: "Tenant",
     id: string,
-    branch: string,
+    awsEnvName: string,
     name: string,
     config: string,
     version: number,

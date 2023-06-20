@@ -1,11 +1,13 @@
 name: 'Your name here'
 description: 'Provide a description here'
-author: 'Your name or organization here'
+author: 'platelet.app'
 inputs:
-  milliseconds: # change this
+  awsEnvName:
     required: true
-    description: 'input description here'
-    default: 'default value if applicable'
+    description: 'the environment name on Amplify'
+  awsExportsFilePath:
+    required: true
+    description: 'aws exports filepath'
 runs:
   using: 'node16'
   main: 'dist/index.js'

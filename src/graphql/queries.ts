@@ -6,7 +6,7 @@ export const getTenant = /* GraphQL */ `
   query GetTenant($id: ID!) {
     getTenant(id: $id) {
       id
-      branch
+      awsEnvName
       name
       config
       version
@@ -24,7 +24,7 @@ export const listTenants = /* GraphQL */ `
     listTenants(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
-        branch
+        awsEnvName
         name
         config
         version
@@ -35,16 +35,16 @@ export const listTenants = /* GraphQL */ `
     }
   }
 `;
-export const getTenantByBranch = /* GraphQL */ `
-  query GetTenantByBranch(
-    $branch: String!
+export const getTenantByEnvName = /* GraphQL */ `
+  query GetTenantByEnvName(
+    $awsEnvName: String!
     $sortDirection: ModelSortDirection
     $filter: ModelTenantFilterInput
     $limit: Int
     $nextToken: String
   ) {
-    getTenantByBranch(
-      branch: $branch
+    getTenantByEnvName(
+      awsEnvName: $awsEnvName
       sortDirection: $sortDirection
       filter: $filter
       limit: $limit
@@ -52,7 +52,7 @@ export const getTenantByBranch = /* GraphQL */ `
     ) {
       items {
         id
-        branch
+        awsEnvName
         name
         config
         version

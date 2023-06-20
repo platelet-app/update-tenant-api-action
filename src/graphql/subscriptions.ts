@@ -6,7 +6,7 @@ export const onCreateTenant = /* GraphQL */ `
   subscription OnCreateTenant($filter: ModelSubscriptionTenantFilterInput) {
     onCreateTenant(filter: $filter) {
       id
-      branch
+      awsEnvName
       name
       config
       version
@@ -19,7 +19,7 @@ export const onUpdateTenant = /* GraphQL */ `
   subscription OnUpdateTenant($filter: ModelSubscriptionTenantFilterInput) {
     onUpdateTenant(filter: $filter) {
       id
-      branch
+      awsEnvName
       name
       config
       version
@@ -32,7 +32,7 @@ export const onDeleteTenant = /* GraphQL */ `
   subscription OnDeleteTenant($filter: ModelSubscriptionTenantFilterInput) {
     onDeleteTenant(filter: $filter) {
       id
-      branch
+      awsEnvName
       name
       config
       version

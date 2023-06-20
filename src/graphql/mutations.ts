@@ -9,7 +9,7 @@ export const createTenant = /* GraphQL */ `
   ) {
     createTenant(input: $input, condition: $condition) {
       id
-      branch
+      awsEnvName
       name
       config
       version
@@ -25,7 +25,7 @@ export const updateTenant = /* GraphQL */ `
   ) {
     updateTenant(input: $input, condition: $condition) {
       id
-      branch
+      awsEnvName
       name
       config
       version
@@ -41,7 +41,7 @@ export const deleteTenant = /* GraphQL */ `
   ) {
     deleteTenant(input: $input, condition: $condition) {
       id
-      branch
+      awsEnvName
       name
       config
       version

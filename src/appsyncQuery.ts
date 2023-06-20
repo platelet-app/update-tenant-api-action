@@ -5,13 +5,13 @@ import {HttpRequest} from '@aws-sdk/protocol-http'
 import fetch, {Request} from 'node-fetch'
 import {
   UpdateTenantInput,
-  GetTenantByBranchQueryVariables,
+  GetTenantByEnvNameQueryVariables,
   CreateTenantInput
 } from './API'
 import {createTenant, updateTenant} from './graphql/mutations'
-import {getTenantByBranch} from './graphql/queries'
+import {getTenantByEnvName} from './graphql/queries'
 
-const AWS_REGION = process.env.REGION
+const AWS_REGION = process.env.AWS_REGION
 const API_URL = process.env.API_URL
 const AWS_ACCESS_KEY_ID = process.env.AWS_ACCESS_KEY_ID
 const AWS_SECRET_ACCESS_KEY = process.env.AWS_SECRET_ACCESS_KEY
@@ -56,9 +56,9 @@ const errorCheck = (body: any) => {
   }
 }
 
-export const updateTenantQuery = async (variables: UpdateTenantInput) => {
+export const updateTenantQuery = async (input: UpdateTenantInput) => {
   const response = await request({
-    variables,
+    variables: {input},
     query: updateTenant
   })
   const body = await response.json()
@@ -66,9 +66,9 @@ export const updateTenantQuery = async (variables: UpdateTenantInput) => {
   return body?.data?.updateTenant
 }
 
-export const createTenantQuery = async (variables: CreateTenantInput) => {
+export const createTenantQuery = async (input: CreateTenantInput) => {
   const response = await request({
-    variables,
+    variables: {input},
     query: createTenant
   })
   const body = await response.json()
@@ -76,14 +76,14 @@ export const createTenantQuery = async (variables: CreateTenantInput) => {
   return body?.data?.createTenant
 }
 
-export const getTenantByBranchQuery = async (
-  variables: GetTenantByBranchQueryVariables
+export const getTenantByEnvQuery = async (
+  variables: GetTenantByEnvNameQueryVariables
 ) => {
   const response = await request({
     variables,
-    query: getTenantByBranch
+    query: getTenantByEnvName
   })
   const body = await response.json()
   errorCheck(body)
-  return body.data.getTenantByBranch[0] || null
+  return body?.data?.getTenantByEnvName?.items[0] || null
 }
