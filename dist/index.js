@@ -303,15 +303,15 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 const core = __importStar(__nccwpck_require__(2186));
 const appsyncQuery_1 = __nccwpck_require__(8272);
 const fs_1 = __importDefault(__nccwpck_require__(7147));
-const aws_exports_1 = __importDefault(__nccwpck_require__(7507));
 function run() {
     return __awaiter(this, void 0, void 0, function* () {
+        const awsExports = yield Promise.resolve().then(() => __importStar(__nccwpck_require__(7507)));
         fs_1.default.readFile('./aws-exports.js', 'utf8', function (err, contents) {
             console.log(contents);
         });
         try {
             const envName = process.env.AMPLIFY_ENV_NAME || '';
-            const awsExportsFile = JSON.stringify(aws_exports_1.default);
+            const awsExportsFile = JSON.stringify(awsExports);
             console.log('sfadsdfa', envName, awsExportsFile);
             const tenantData = yield (0, appsyncQuery_1.getTenantByEnvQuery)({ awsEnvName: envName });
             if (tenantData) {
