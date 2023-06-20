@@ -306,6 +306,7 @@ const fs_1 = __importDefault(__nccwpck_require__(7147));
 function run() {
     return __awaiter(this, void 0, void 0, function* () {
         const awsExports = yield Promise.resolve().then(() => __importStar(__nccwpck_require__(5648)));
+        console.log(__dirname);
         fs_1.default.readFile('./aws-exports.js', 'utf8', function (err, contents) {
             console.log(contents);
         });
