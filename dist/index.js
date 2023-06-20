@@ -302,8 +302,8 @@ const appsyncQuery_1 = __nccwpck_require__(8272);
 function run() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
-            const envName = process.env.AMPLIFY_ENV_NAME || '';
             const awsExportsFilepath = core.getInput('awsExportsFilepath');
+            const envName = core.getInput('awsEnvName');
             const { default: awsExports } = yield Promise.resolve(`${awsExportsFilepath}`).then(s => __importStar(require(s)));
             const awsExportsFile = JSON.stringify(awsExports);
             console.log('sfadsdfa', envName, awsExportsFile);

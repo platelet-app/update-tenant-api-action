@@ -7,8 +7,8 @@ import {
 
 async function run(): Promise<void> {
   try {
-    const envName: string = process.env.AMPLIFY_ENV_NAME || ''
     const awsExportsFilepath = core.getInput('awsExportsFilepath')
+    const envName = core.getInput('awsEnvName')
     const {default: awsExports} = await import(awsExportsFilepath)
     const awsExportsFile = JSON.stringify(awsExports)
     console.log('sfadsdfa', envName, awsExportsFile)

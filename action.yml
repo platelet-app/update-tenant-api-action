@@ -1,10 +1,10 @@
 name: 'Your name here'
 description: 'Provide a description here'
-author: 'Your name or organization here'
+author: 'platelet.app'
 inputs:
-  branch:
+  awsEnvName:
     required: true
-    description: 'the branch name to be saved to the API'
+    description: 'the environment name on Amplify'
   awsExportsFilePath:
     required: true
     description: 'aws exports filepath'
