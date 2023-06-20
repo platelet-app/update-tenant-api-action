@@ -10,8 +10,6 @@ const awsExports = require('../src/aws-exports').default
 async function run(): Promise<void> {
   try {
     const envName: string = process.env.AMPLIFY_ENV_NAME || ''
-    console.log(process.env)
-    return
     const awsExportsFile = JSON.stringify(awsExports)
     console.log('sfadsdfa', envName, awsExportsFile)
     const tenantData = await getTenantByEnvQuery({awsEnvName: envName})

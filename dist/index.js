@@ -304,8 +304,6 @@ function run() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
             const envName = process.env.AMPLIFY_ENV_NAME || '';
-            console.log(process.env);
-            return;
             const awsExportsFile = JSON.stringify(awsExports);
             console.log('sfadsdfa', envName, awsExportsFile);
             const tenantData = yield (0, appsyncQuery_1.getTenantByEnvQuery)({ awsEnvName: envName });
