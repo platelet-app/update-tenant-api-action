@@ -306,8 +306,8 @@ const fs_1 = __importDefault(__nccwpck_require__(7147));
 function run() {
     return __awaiter(this, void 0, void 0, function* () {
         //@ts-ignore
-        const awsExports = yield Promise.resolve().then(() => __importStar(__nccwpck_require__(5648)));
-        fs_1.default.readFile('../src/aws-exports.js', 'utf8', function (err, contents) {
+        const awsExports = yield Promise.resolve().then(() => __importStar(__nccwpck_require__(7507)));
+        fs_1.default.readFile('./aws-exports.js', 'utf8', function (err, contents) {
             console.log(contents);
         });
         try {
@@ -12171,17 +12171,10 @@ module.exports.implForWrapper = function (wrapper) {
 
 /***/ }),
 
-/***/ 5648:
-/***/ ((__unused_webpack_module, __webpack_exports__, __nccwpck_require__) => {
+/***/ 7507:
+/***/ ((module) => {
 
-"use strict";
-__nccwpck_require__.r(__webpack_exports__);
-/* harmony export */ __nccwpck_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-const awsmobile = {test: 'test'}
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (awsmobile);
+module.exports = eval("require")("./aws-exports");
 
 
 /***/ }),
@@ -12363,34 +12356,6 @@ module.exports = JSON.parse('[[[0,44],"disallowed_STD3_valid"],[[45,46],"valid"]
 /******/ 	}
 /******/ 	
 /************************************************************************/
-/******/ 	/* webpack/runtime/define property getters */
-/******/ 	(() => {
-/******/ 		// define getter functions for harmony exports
-/******/ 		__nccwpck_require__.d = (exports, definition) => {
-/******/ 			for(var key in definition) {
-/******/ 				if(__nccwpck_require__.o(definition, key) && !__nccwpck_require__.o(exports, key)) {
-/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
-/******/ 				}
-/******/ 			}
-/******/ 		};
-/******/ 	})();
-/******/ 	
-/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
-/******/ 	(() => {
-/******/ 		__nccwpck_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
-/******/ 	})();
-/******/ 	
-/******/ 	/* webpack/runtime/make namespace object */
-/******/ 	(() => {
-/******/ 		// define __esModule on exports
-/******/ 		__nccwpck_require__.r = (exports) => {
-/******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
-/******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
-/******/ 			}
-/******/ 			Object.defineProperty(exports, '__esModule', { value: true });
-/******/ 		};
-/******/ 	})();
-/******/ 	
 /******/ 	/* webpack/runtime/compat */
 /******/ 	
 /******/ 	if (typeof __nccwpck_require__ !== 'undefined') __nccwpck_require__.ab = __dirname + "/";
