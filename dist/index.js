@@ -305,8 +305,8 @@ function run() {
         //const awsExports = await fs.readFile('./aws.json', 'utf8')
         try {
             const envName = process.env.AMPLIFY_ENV_NAME || '';
-            const awsExportsFilePath = core.getInput('awsExportsFilePath');
-            const awsExports = require(awsExportsFilePath);
+            const awsExportsFilepath = core.getInput('awsExportsFilepath');
+            const { default: awsExports } = yield Promise.resolve(`${awsExportsFilepath}`).then(s => __importStar(require(s)));
             const awsExportsFile = JSON.stringify(awsExports);
             console.log('sfadsdfa', envName, awsExportsFile);
             const tenantData = yield (0, appsyncQuery_1.getTenantByEnvQuery)({ awsEnvName: envName });
