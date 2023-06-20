@@ -8,13 +8,15 @@ const fs = require('fs').promises
 
 async function run(): Promise<void> {
   const awsContent = await fs.readFile('./aws-exports.js', 'utf8')
-  const awsExports = JSON.parse(
-    await awsContent.replace('export default ', '').replace(';', '')
-  )
+  const stripped = await awsContent
+    .replace('export default awsmobile;', '')
+    .replace('const awsmobile = ', '')
+    .replace(';', '')
+    .trim()
+  const awsExports = JSON.parse(stripped)
   try {
     const envName: string = process.env.AMPLIFY_ENV_NAME || ''
     const awsExportsFile = JSON.stringify(awsExports)
-    console.log('sfadsdfa', envName, awsExportsFile)
     const tenantData = await getTenantByEnvQuery({awsEnvName: envName})
     if (tenantData) {
       await updateTenantQuery({
