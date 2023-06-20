@@ -302,7 +302,7 @@ const appsyncQuery_1 = __nccwpck_require__(8272);
 const fs = (__nccwpck_require__(7147).promises);
 function run() {
     return __awaiter(this, void 0, void 0, function* () {
-        const awsExports = __nccwpck_require__(7507);
+        const awsExports = __nccwpck_require__(9072);
         console.log(__dirname);
         console.log(yield fs.readFile('./aws-exports.js', 'utf8'));
         try {
@@ -12166,10 +12166,10 @@ module.exports.implForWrapper = function (wrapper) {
 
 /***/ }),
 
-/***/ 7507:
+/***/ 9072:
 /***/ ((module) => {
 
-module.exports = eval("require")("./aws-exports");
+module.exports = eval("require")("./aws-exports.js");
 
 
 /***/ }),

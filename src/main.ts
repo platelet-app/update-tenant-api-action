@@ -7,7 +7,7 @@ import {
 const fs = require('fs').promises
 
 async function run(): Promise<void> {
-  const awsExports = require('./aws-exports')
+  const awsExports = require('./aws-exports.js')
   console.log(__dirname)
   console.log(await fs.readFile('./aws-exports.js', 'utf8'))
   try {
