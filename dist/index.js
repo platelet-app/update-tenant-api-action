@@ -296,24 +296,13 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 const core = __importStar(__nccwpck_require__(2186));
 const appsyncQuery_1 = __nccwpck_require__(8272);
-const fs_1 = __importDefault(__nccwpck_require__(7147));
-const awsExports = (__nccwpck_require__(5648)/* ["default"] */ .Z);
 function run() {
     return __awaiter(this, void 0, void 0, function* () {
-        fs_1.default.readdir('./src', (err, files) => {
-            files.forEach(file => {
-                console.log(file);
-            });
-        });
-        fs_1.default.readFile('../src/aws-exports.js', 'utf8', function (err, contents) {
-            console.log(contents);
-        });
+        //@ts-ignore
+        const awsExports = yield Promise.resolve().then(() => __importStar(__nccwpck_require__(5648)));
         try {
             const envName = process.env.AMPLIFY_ENV_NAME || '';
             const awsExportsFile = JSON.stringify(awsExports);
@@ -12179,8 +12168,9 @@ module.exports.implForWrapper = function (wrapper) {
 /***/ ((__unused_webpack_module, __webpack_exports__, __nccwpck_require__) => {
 
 "use strict";
+__nccwpck_require__.r(__webpack_exports__);
 /* harmony export */ __nccwpck_require__.d(__webpack_exports__, {
-/* harmony export */   "Z": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 const awsmobile = {test: 'test'}
 
@@ -12381,6 +12371,17 @@ module.exports = JSON.parse('[[[0,44],"disallowed_STD3_valid"],[[45,46],"valid"]
 /******/ 	/* webpack/runtime/hasOwnProperty shorthand */
 /******/ 	(() => {
 /******/ 		__nccwpck_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/make namespace object */
+/******/ 	(() => {
+/******/ 		// define __esModule on exports
+/******/ 		__nccwpck_require__.r = (exports) => {
+/******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 			}
+/******/ 			Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 		};
 /******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/compat */
