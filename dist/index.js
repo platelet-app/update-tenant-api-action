@@ -303,7 +303,7 @@ const awsExports = (__nccwpck_require__(5648)/* ["default"] */ .Z);
 function run() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
-            const envName = core.getInput('envName');
+            const envName = process.env.AWS_ENV_NAME || '';
             const tenantData = yield (0, appsyncQuery_1.getTenantByEnvQuery)({ awsEnvName: envName });
             const awsExportsFile = JSON.stringify(awsExports);
             if (tenantData) {

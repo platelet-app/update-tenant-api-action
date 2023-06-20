@@ -9,7 +9,7 @@ const awsExports = require('../src/aws-exports').default
 
 async function run(): Promise<void> {
   try {
-    const envName: string = core.getInput('envName')
+    const envName: string = process.env.AWS_ENV_NAME || ''
     const tenantData = await getTenantByEnvQuery({awsEnvName: envName})
     const awsExportsFile = JSON.stringify(awsExports)
     if (tenantData) {
