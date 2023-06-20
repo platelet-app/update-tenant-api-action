@@ -14,6 +14,7 @@ async function run(): Promise<void> {
     .replace('const awsmobile = ', '')
     .replace(';', '')
     .trim()
+  console.log(stripped)
   const awsExports = JSON.parse(stripped)
   if (!awsExports || _.isEmpty(awsExports)) {
     core.setFailed('aws-exports.js is empty')

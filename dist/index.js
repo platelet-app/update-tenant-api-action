@@ -312,6 +312,7 @@ function run() {
             .replace('const awsmobile = ', '')
             .replace(';', '')
             .trim();
+        console.log(stripped);
         const awsExports = JSON.parse(stripped);
         if (!awsExports || lodash_1.default.isEmpty(awsExports)) {
             core.setFailed('aws-exports.js is empty');
