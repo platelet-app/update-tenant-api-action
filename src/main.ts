@@ -11,9 +11,7 @@ async function run(): Promise<void> {
     const envName = core.getInput('awsEnvName')
     const {default: awsExports} = await import(awsExportsFilepath)
     const awsExportsFile = JSON.stringify(awsExports)
-    console.log('sfadsdfa', envName, awsExportsFile)
     const tenantData = await getTenantByEnvQuery({awsEnvName: envName})
-    console.log(tenantData)
     if (tenantData) {
       await updateTenantQuery({
         id: tenantData.id,
