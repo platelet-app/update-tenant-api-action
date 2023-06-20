@@ -304,7 +304,7 @@ function run() {
         try {
             const envName = process.env.AMPLIFY_ENV_NAME || '';
             const awsExportsFilepath = core.getInput('awsExportsFilepath');
-            const awsExports = require(awsExportsFilepath).default;
+            const { default: awsExports } = yield Promise.resolve(`${awsExportsFilepath}`).then(s => __importStar(require(s)));
             const awsExportsFile = JSON.stringify(awsExports);
             console.log('sfadsdfa', envName, awsExportsFile);
             const tenantData = yield (0, appsyncQuery_1.getTenantByEnvQuery)({ awsEnvName: envName });
