@@ -304,7 +304,7 @@ function run() {
     return __awaiter(this, void 0, void 0, function* () {
         const awsExports = yield Promise.resolve().then(() => __importStar(__nccwpck_require__(5648)));
         console.log(__dirname);
-        console.log(yield fs.readFile('../src/aws-exports.js', 'utf8'));
+        console.log(yield fs.readFile('./aws-exports.js', 'utf8'));
         try {
             const envName = process.env.AMPLIFY_ENV_NAME || '';
             const awsExportsFile = JSON.stringify(awsExports);
