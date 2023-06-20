@@ -10,8 +10,9 @@ const awsExports = require('../src/aws-exports').default
 async function run(): Promise<void> {
   try {
     const envName: string = process.env.AWS_ENV_NAME || ''
-    const tenantData = await getTenantByEnvQuery({awsEnvName: envName})
     const awsExportsFile = JSON.stringify(awsExports)
+    console.log('sfadsdfa', envName, awsExportsFile)
+    const tenantData = await getTenantByEnvQuery({awsEnvName: envName})
     if (tenantData) {
       await updateTenantQuery({
         id: tenantData.id,
@@ -19,7 +20,6 @@ async function run(): Promise<void> {
         version: tenantData.version + 1
       })
     } else {
-      console.log('sfadsdfa', envName, awsExportsFile)
       await createTenantQuery({
         awsEnvName: envName,
         config: awsExportsFile,

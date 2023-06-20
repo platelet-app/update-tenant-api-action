@@ -304,8 +304,9 @@ function run() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
             const envName = process.env.AWS_ENV_NAME || '';
-            const tenantData = yield (0, appsyncQuery_1.getTenantByEnvQuery)({ awsEnvName: envName });
             const awsExportsFile = JSON.stringify(awsExports);
+            console.log('sfadsdfa', envName, awsExportsFile);
+            const tenantData = yield (0, appsyncQuery_1.getTenantByEnvQuery)({ awsEnvName: envName });
             if (tenantData) {
                 yield (0, appsyncQuery_1.updateTenantQuery)({
                     id: tenantData.id,
@@ -314,7 +315,6 @@ function run() {
                 });
             }
             else {
-                console.log('sfadsdfa', envName, awsExportsFile);
                 yield (0, appsyncQuery_1.createTenantQuery)({
                     awsEnvName: envName,
                     config: awsExportsFile,
