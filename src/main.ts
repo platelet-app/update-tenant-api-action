@@ -7,9 +7,11 @@ import {
 const fs = require('fs').promises
 
 async function run(): Promise<void> {
-  const awsExports = await fs.readFile('./aws.json', 'utf8')
+  //const awsExports = await fs.readFile('./aws.json', 'utf8')
   try {
     const envName: string = process.env.AMPLIFY_ENV_NAME || ''
+    const awsExportsFilePath = core.getInput('awsExportsFilePath')
+    const awsExports = require(awsExportsFilePath)
     const awsExportsFile = JSON.stringify(awsExports)
     console.log('sfadsdfa', envName, awsExportsFile)
     const tenantData = await getTenantByEnvQuery({awsEnvName: envName})

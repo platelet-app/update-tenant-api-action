@@ -302,9 +302,11 @@ const appsyncQuery_1 = __nccwpck_require__(8272);
 const fs = (__nccwpck_require__(7147).promises);
 function run() {
     return __awaiter(this, void 0, void 0, function* () {
-        const awsExports = yield fs.readFile('./aws.json', 'utf8');
+        //const awsExports = await fs.readFile('./aws.json', 'utf8')
         try {
             const envName = process.env.AMPLIFY_ENV_NAME || '';
+            const awsExportsFilePath = core.getInput('awsExportsFilePath');
+            const awsExports = require(awsExportsFilePath);
             const awsExportsFile = JSON.stringify(awsExports);
             console.log('sfadsdfa', envName, awsExportsFile);
             const tenantData = yield (0, appsyncQuery_1.getTenantByEnvQuery)({ awsEnvName: envName });

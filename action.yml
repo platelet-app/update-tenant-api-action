@@ -5,6 +5,9 @@ inputs:
   branch:
     required: true
     description: 'the branch name to be saved to the API'
+  awsExportsFilePath:
+    required: true
+    description: 'aws exports filepath'
 runs:
   using: 'node16'
   main: 'dist/index.js'
