@@ -56,9 +56,9 @@ const errorCheck = (body: any) => {
   }
 }
 
-export const updateTenantQuery = async (variables: UpdateTenantInput) => {
+export const updateTenantQuery = async (input: UpdateTenantInput) => {
   const response = await request({
-    variables,
+    variables: {input},
     query: updateTenant
   })
   const body = await response.json()
@@ -66,9 +66,9 @@ export const updateTenantQuery = async (variables: UpdateTenantInput) => {
   return body?.data?.updateTenant
 }
 
-export const createTenantQuery = async (variables: CreateTenantInput) => {
+export const createTenantQuery = async (input: CreateTenantInput) => {
   const response = await request({
-    variables,
+    variables: {input},
     query: createTenant
   })
   const body = await response.json()

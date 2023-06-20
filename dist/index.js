@@ -86,10 +86,10 @@ const errorCheck = (body) => {
         throw new Error(body === null || body === void 0 ? void 0 : body.errors[0].message);
     }
 };
-const updateTenantQuery = (variables) => __awaiter(void 0, void 0, void 0, function* () {
+const updateTenantQuery = (input) => __awaiter(void 0, void 0, void 0, function* () {
     var _a;
     const response = yield request({
-        variables,
+        variables: { input },
         query: mutations_1.updateTenant
     });
     const body = yield response.json();
@@ -97,10 +97,10 @@ const updateTenantQuery = (variables) => __awaiter(void 0, void 0, void 0, funct
     return (_a = body === null || body === void 0 ? void 0 : body.data) === null || _a === void 0 ? void 0 : _a.updateTenant;
 });
 exports.updateTenantQuery = updateTenantQuery;
-const createTenantQuery = (variables) => __awaiter(void 0, void 0, void 0, function* () {
+const createTenantQuery = (input) => __awaiter(void 0, void 0, void 0, function* () {
     var _b;
     const response = yield request({
-        variables,
+        variables: { input },
         query: mutations_1.createTenant
     });
     const body = yield response.json();
