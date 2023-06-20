@@ -7,9 +7,7 @@ import {
 const fs = require('fs').promises
 
 async function run(): Promise<void> {
-  //@ts-ignore
-  const {default: awsExports} = await import('./aws-exports')
-  console.log(await fs.readFile('./aws-exports.js', 'utf8'))
+  const awsExports = await fs.readFile('./aws.json', 'utf8')
   try {
     const envName: string = process.env.AMPLIFY_ENV_NAME || ''
     const awsExportsFile = JSON.stringify(awsExports)
