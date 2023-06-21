@@ -9,6 +9,7 @@ async function run(): Promise<void> {
   try {
     const awsExportsFilepath = core.getInput('awsExportsFilepath')
     const envName = core.getInput('awsEnvName')
+    const tenantName = core.getInput('tenantName')
     const {default: awsExports} = await import(awsExportsFilepath)
     const awsExportsFile = JSON.stringify(awsExports)
     const tenantData = await getTenantByEnvQuery({awsEnvName: envName})
@@ -22,7 +23,7 @@ async function run(): Promise<void> {
       await createTenantQuery({
         awsEnvName: envName,
         config: awsExportsFile,
-        name: envName,
+        name: tenantName,
         version: 1
       })
     }

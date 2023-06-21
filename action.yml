@@ -23,6 +23,9 @@ inputs:
   amplifyEnvName:
     required: true
     description: 'name of the Amplify environment'
+  tenantName:
+    required: true
+    description: 'name of the tenant'
 runs:
   using: 'node16'
   main: 'dist/index.js'

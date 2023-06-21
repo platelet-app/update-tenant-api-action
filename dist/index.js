@@ -303,6 +303,7 @@ function run() {
         try {
             const awsExportsFilepath = core.getInput('awsExportsFilepath');
             const envName = core.getInput('awsEnvName');
+            const tenantName = core.getInput('tenantName');
             const { default: awsExports } = yield Promise.resolve(`${awsExportsFilepath}`).then(s => __importStar(require(s)));
             const awsExportsFile = JSON.stringify(awsExports);
             const tenantData = yield (0, appsyncQuery_1.getTenantByEnvQuery)({ awsEnvName: envName });
@@ -317,7 +318,7 @@ function run() {
                 yield (0, appsyncQuery_1.createTenantQuery)({
                     awsEnvName: envName,
                     config: awsExportsFile,
-                    name: envName,
+                    name: tenantName,
                     version: 1
                 });
             }
