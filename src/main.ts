@@ -16,7 +16,9 @@ async function run(): Promise<void> {
     if (tenantData) {
       await updateTenantQuery({
         id: tenantData.id,
+        awsEnvName: envName,
         config: awsExportsFile,
+        name: tenantName,
         version: tenantData.version + 1
       })
     } else {
